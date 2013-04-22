@@ -1,9 +1,7 @@
 package com.nokia.scbe.hackathon.bestdayever.placesapi;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.springframework.context.ApplicationContext;
@@ -25,7 +23,7 @@ public class App
         PlacesAPIClient client = clientFactory.createPlacesAPIClient();
         
         PlacesAPIService service = new PlacesAPIService(client);
-        List<PlaceResultItem> list = service.getPlacesNearHere(42.3821,-71.0244, 100);
+        List<PlaceResultItem> list = service.getPlacesNearHere(42.3821,-71.0244, 100, null);
         
         System.out.println("Got "+list.size()+" results back");
         int i=1;

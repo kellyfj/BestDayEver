@@ -1,7 +1,6 @@
 package com.nokia.scbe.hackathon.bestdayever.placesapi;
 
 import java.io.Serializable;
-import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 

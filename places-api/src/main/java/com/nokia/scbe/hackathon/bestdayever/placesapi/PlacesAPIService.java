@@ -20,13 +20,13 @@ public class PlacesAPIService {
 		placesClient=client;
 	}
 	
-	public List<PlaceResultItem> getPlacesNearHere(double lat, double longitude, int size) {
+	public List<PlaceResultItem> getPlacesNearHere(double lat, double longitude, int size, String category) {
 		LOG.debug("Reading places from PBAPI with Lat, Long, Size");
 
 		ClientResponse<Object> response = null;
 		try {
 			String latLong = "" + lat + "," + longitude;
-			response = placesClient.discoverExplore(MediaType.APPLICATION_JSON,latLong, "plain", size, APP_ID,
+			response = placesClient.discoverExplore(MediaType.APPLICATION_JSON,latLong, "plain", size, category, APP_ID,
 					APP_CODE);
 
 			if (response.getStatus() == HttpStatus.SC_OK) {
