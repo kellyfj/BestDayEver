@@ -30,7 +30,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 /**
  * Factory for 3rd party clients.
  */
-public class ClientFactoryBean {
+public class ClientFactoryBean implements ClientFactory{
 	   private static final Logger LOG = Logger.getLogger(ClientFactoryBean.class);
 		
     private HttpClient placesAPIHttpClient;

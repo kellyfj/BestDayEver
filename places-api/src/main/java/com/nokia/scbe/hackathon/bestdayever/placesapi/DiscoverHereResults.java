@@ -10,13 +10,13 @@ public class DiscoverHereResults implements Serializable {
 
 	private static final long serialVersionUID = -5630955098831293979L;
 
-	private List<Object> results;
+	private DiscoverHereListOfPlaces results;
 
-		public List<Object> getResults() {
+		public DiscoverHereListOfPlaces getResults() {
 			return results;
 		}
 
-		public void setResults(List<Object> results) {
+		public void setResults(DiscoverHereListOfPlaces results) {
 			this.results = results;
 		}		
 		

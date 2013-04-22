@@ -17,7 +17,7 @@ public interface PlacesAPIClient {
     @GET
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/places/v1/discover/explore")
-    ClientResponse<Object>  discoverExplore(@HeaderParam("Accept") String mediaType, @PathParam("at") String currentLocation, @PathParam("tf") String textFormat, @PathParam("size") Integer size, @QueryParam("app_id") String appId, @QueryParam("app_code") String appCode);
+    ClientResponse<Object>  discoverExplore(@HeaderParam("Accept") String mediaType, @QueryParam("at") String currentLocation, @QueryParam("tf") String textFormat, @QueryParam("size") Integer size, @QueryParam("app_id") String appId, @QueryParam("app_code") String appCode);
 }
 
 

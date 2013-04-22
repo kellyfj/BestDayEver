@@ -12,11 +12,11 @@ public class DiscoverHereListOfPlaces implements Serializable{
 
 	private List<PlaceResultItem> placeResultItems = null;
 
-	public List<PlaceResultItem> getPlaceResultItems() {
+	public List<PlaceResultItem> getItems() {
 		return placeResultItems;
 	}
 
-	public void setPlaceResultItems(List<PlaceResultItem> placeResultItems) {
+	public void setItems(List<PlaceResultItem> placeResultItems) {
 		this.placeResultItems = placeResultItems;
 	}
 	
