@@ -74,6 +74,10 @@ public class InputConstraints {
 		this.noaId = noaId;
 	}
 	
+	public String getTimezone() {
+		return "UTC-4:00";
+	}
+	
 	@Override
 	public String toString() {
 		return "InputConstraints [latitute=" + latitute + ", longitude="
