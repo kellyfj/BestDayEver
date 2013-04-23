@@ -4,17 +4,12 @@
 
 	<groupId>com.nokia.scbe.bestdayever</groupId>
 	<artifactId>calendar</artifactId>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 	<name>calendar</name>
 	<url>http://maven.apache.org</url>
 
-    <parent>
-        <groupId>com.nokia.scbe.hackathon.bestdayever</groupId>
-        <artifactId>bestdayever</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-
-	<properties>
+ 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
