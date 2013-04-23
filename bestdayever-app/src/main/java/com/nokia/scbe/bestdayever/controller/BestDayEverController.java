@@ -2,8 +2,10 @@ package com.nokia.scbe.bestdayever.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.nokia.scbe.bestdayever.model.Entry;
 import com.nokia.scbe.bestdayever.model.InputConstraints;
 import com.nokia.scbe.bestdayever.model.MyBestDay;
 
@@ -69,12 +72,20 @@ public class BestDayEverController {
 		constraints.setLongitude(lon);
 		constraints.setStart(start);
 		constraints.setEnd(end);
+		constraints.setEffort(effort);
 		
 		System.out.println(constraints.toString());
 		
+		//Buisness logic goes here
+		
 		MyBestDay bestDay = new MyBestDay();
-		bestDay.setPlace("Roller Kingdom");
-		bestDay.setPrice(50);
+		long now = System.currentTimeMillis();
+		Entry entry1 = new Entry(new Date(now), new Date(now+30000), "Roller Kingdom", "www.rollerkingdom.com");
+		Entry entry2 = new Entry(new Date(now+80000), new Date(now+100000), "Skyzone", "www.skyzone.com");
+		List<Entry> entries = new ArrayList<Entry>();
+		entries.add(entry1);
+		entries.add(entry2);
+		bestDay.setEntries(entries);
 		
 		return bestDay;
 	}

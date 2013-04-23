@@ -1,19 +1,21 @@
 package com.nokia.scbe.bestdayever.model;
 
+import java.util.List;
+
 public class MyBestDay {
-	private String place;
-	private double price;
+	List<Entry> entries;
+
+	public List<Entry> getEntries() {
+		return entries;
+	}
+
+	public void setEntries(List<Entry> entries) {
+		this.entries = entries;
+	}
+
+	@Override
+	public String toString() {
+		return "MyBestDay [entries=" + entries + "]";
+	}
 	
-	public String getPlace() {
-		return place;
-	}
-	public void setPlace(String place) {
-		this.place = place;
-	}
-	public double getPrice() {
-		return price;
-	}
-	public void setPrice(double price) {
-		this.price = price;
-	}
 }
