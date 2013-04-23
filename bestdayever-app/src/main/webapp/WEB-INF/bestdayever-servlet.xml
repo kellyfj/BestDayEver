@@ -10,6 +10,30 @@
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
 	<context:component-scan base-package="com.nokia.scbe.bestdayever.controller" />
+	<context:component-scan base-package="com.nokia.scbe.*" />
+	
+	 	<bean id="clientFactory" class="com.nokia.scbe.hackathon.bestdayever.placesapi.ClientFactoryBean">
+ 		 <property name="pbapiUri" value="http://places.nlp.nokia.com/"/>
+ 		 <property name="proxyHost" value="nycolo-webproxy01.americas.nokia.com" />
+		 <property name="proxyPort" value="8080"/>
+		 <property name="pbapiHttpClient" ref="pbapiHttpClient"/>
+	</bean>
+
+  <bean id="pbapiHttpClient" class="com.nokia.gate5.places.lib.common.httpclient.HttpClient4FactoryBean">
+         <property name="connectionsPerRoute" value="2" />
+         <property name="totalConnections" value="20" />
+         <property name="connectionManagerTimeout" value="3000" />
+         <property name="socketTimeout" value="5000" />
+         <property name="socketConnectionTimeout" value="2000" />
+         <property name="idleConnectionMonitorEnabled" value="true" />
+         <property name="handleRedirects" value="false" />
+   </bean>
+   
+   <bean id="placesAPIClient" factory-bean="clientFactory" factory-method="createPlacesAPIClient"/>
+   
+   <bean id="engine" class="com.nokia.scbe.bestdayever.controller.Engine" />
+   
+	
 
 	<mvc:annotation-driven />
 

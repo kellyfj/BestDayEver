@@ -2,23 +2,28 @@ package com.nokia.scbe.bestdayever.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.nokia.scbe.bestdayever.model.Entry;
 import com.nokia.scbe.bestdayever.model.InputConstraints;
 import com.nokia.scbe.bestdayever.model.MyBestDay;
 
 @Controller
 public class BestDayEverController {
+	
+	Engine engine;
+	
+	@Autowired
+	public void setEngine(Engine e) {
+		this.engine = e;
+	}
 
 	// query string: latlong1=42.36225,-71.0783688&
 	// interval=2013-04-22T10:00:00.000-04:00,2013-04-22T21:00:00.000-04:00&
@@ -77,15 +82,17 @@ public class BestDayEverController {
 		System.out.println(constraints.toString());
 		
 		//Buisness logic goes here
+		MyBestDay bestDay = engine.createMyBestDay(constraints.getGoogleId(), constraints.getStart(), constraints.getEnd(),
+				constraints.getTimezone(), constraints.getLatitute(), constraints.getLongitude(), 0.0D, null, constraints.getEffort());
 		
-		MyBestDay bestDay = new MyBestDay();
-		long now = System.currentTimeMillis();
-		Entry entry1 = new Entry(new Date(now), new Date(now+30000), "Roller Kingdom", "www.rollerkingdom.com");
-		Entry entry2 = new Entry(new Date(now+80000), new Date(now+100000), "Skyzone", "www.skyzone.com");
-		List<Entry> entries = new ArrayList<Entry>();
-		entries.add(entry1);
-		entries.add(entry2);
-		bestDay.setEntries(entries);
+//		MyBestDay bestDay = new MyBestDay();
+//		long now = System.currentTimeMillis();
+//		Entry entry1 = new Entry(new Date(now), new Date(now+30000), "Roller Kingdom", "www.rollerkingdom.com");
+//		Entry entry2 = new Entry(new Date(now+80000), new Date(now+100000), "Skyzone", "www.skyzone.com");
+//		List<Entry> entries = new ArrayList<Entry>();
+//		entries.add(entry1);
+//		entries.add(entry2);
+//		bestDay.setEntries(entries);
 		
 		return bestDay;
 	}

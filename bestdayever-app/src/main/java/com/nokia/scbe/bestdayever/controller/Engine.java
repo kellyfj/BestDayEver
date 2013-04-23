@@ -1,24 +1,32 @@
 package com.nokia.scbe.bestdayever.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.nokia.scbe.bestdayever.model.MyBestDay;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.nokia.scbe.bestdayever.calendar.TimeSlot;
 import com.nokia.scbe.bestdayever.model.Entry;
+import com.nokia.scbe.bestdayever.model.MyBestDay;
 import com.nokia.scbe.hackathon.bestdayever.placesapi.PlaceResultItem;
 import com.nokia.scbe.hackathon.bestdayever.placesapi.PlacesAPIService;
-import com.nokia.scbe.bestdayever.calendar.*;
 
+@Service
 public class Engine {
 	private static final int NUM_EXTRA_PLACES_PER_CATEGORY = 20;
 	public final static String ENERGY_HIGH = "HIGH";
 	public final static String ENERGY_MED = "MED";
 	public final static String ENERGY_LOW = "LOW";
-	private static PlacesAPIService service =null;
+	private  PlacesAPIService service;
+	
+	@Autowired
+	public void setPlacesAPIService(PlacesAPIService service) {
+		this.service = service;
+	}
 	
 
     //Sample call e.optimize(42.3821,-71.0244,55.0, "rain", ENERGY_MED);
@@ -28,7 +36,6 @@ public class Engine {
 			String energyLevel)
 	{		
 		//1. Get Places Nearby
-              
         List<PlaceResultItem> unfilteredList = service.getPlacesNearHere(lat, longitude, 100, null);
         
         System.out.println("Got "+unfilteredList.size()+" results back");
@@ -50,16 +57,18 @@ public class Engine {
  
         
     //2. Get Calendar free time (free time chunks)
-   			FreeBusyTimesRetriever f = new FreeBusyTimesRetriever();
-   			List<TimeSlot> freeTimeSlots = new ArrayList<TimeSlot>();
-   			try {
-   				freeTimeSlots = f.getFreeTimes(googleId, start, end, timezone);
-			} catch (IOException e) {
-				System.err.println(e);
-				e.printStackTrace();
-			}
+        List<TimeSlot> freeTimeSlots = new ArrayList<TimeSlot>();
+        freeTimeSlots.add(new TimeSlot(start, end));
+//   			FreeBusyTimesRetriever f = new FreeBusyTimesRetriever();
+//   			List<TimeSlot> freeTimeSlots = new ArrayList<TimeSlot>();
+//   			try {
+//   				freeTimeSlots = f.getFreeTimes(googleId, start, end, timezone);
+//			} catch (IOException e) {
+//				System.err.println(e);
+//				e.printStackTrace();
+//			}
    	//3. Get weather  (min temp, rain)
-        filteredList = weightResultsForWeather(temp, forecast, filteredList);
+     //   filteredList = weightResultsForWeather(temp, forecast, filteredList);
         
         // r=0;
         //FOR EACH free chunk
