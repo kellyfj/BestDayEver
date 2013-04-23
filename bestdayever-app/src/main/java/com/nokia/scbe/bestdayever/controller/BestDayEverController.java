@@ -85,15 +85,6 @@ public class BestDayEverController {
 		MyBestDay bestDay = engine.createMyBestDay(constraints.getGoogleId(), constraints.getStart(), constraints.getEnd(),
 				constraints.getTimezone(), constraints.getLatitute(), constraints.getLongitude(), 0.0D, null, constraints.getEffort());
 		
-//		MyBestDay bestDay = new MyBestDay();
-//		long now = System.currentTimeMillis();
-//		Entry entry1 = new Entry(new Date(now), new Date(now+30000), "Roller Kingdom", "www.rollerkingdom.com");
-//		Entry entry2 = new Entry(new Date(now+80000), new Date(now+100000), "Skyzone", "www.skyzone.com");
-//		List<Entry> entries = new ArrayList<Entry>();
-//		entries.add(entry1);
-//		entries.add(entry2);
-//		bestDay.setEntries(entries);
-		
 		return bestDay;
 	}
 
