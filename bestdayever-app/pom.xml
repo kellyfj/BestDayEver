@@ -21,7 +21,17 @@
 <!--
                 <dependency>
                         <groupId>${project.groupId}</groupId>
-                        <artifactId>places-api</artifactId>
+                        <artifactId>placesapi</artifactId>
+                        <version>${project.version}</version>
+                </dependency>
+                <dependency>
+                        <groupId>${project.groupId}</groupId>
+                        <artifactId>calendar</artifactId>
+                        <version>${project.version}</version>
+                </dependency>
+                <dependency>
+                        <groupId>${project.groupId}</groupId>
+                        <artifactId>weatherZYX</artifactId>
                         <version>${project.version}</version>
                 </dependency>
 -->
