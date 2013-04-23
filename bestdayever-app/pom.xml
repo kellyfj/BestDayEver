@@ -24,15 +24,11 @@
 			<artifactId>calendar</artifactId>
 			<version>1.0</version>
 		</dependency>
-
-		<!-- 
 		<dependency> 
-			<groupId>${project.groupId}</groupId> 
-			<artifactId>weatherZYX</artifactId> 
-			<version>${project.version}</version> 
+			<groupId>com.nokia.scbe.bestdayever</groupId>
+			<artifactId>weather</artifactId>
+			<version>1.0</version>
 		</dependency> 
-		-->
-		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit-dep</artifactId>
