@@ -1,12 +1,17 @@
 package com.nokia.scbe.bestdayever.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.nokia.scbe.bestdayever.model.MyBestDay;
+import com.nokia.scbe.bestdayever.model.Entry;
 import com.nokia.scbe.hackathon.bestdayever.placesapi.PlaceResultItem;
 import com.nokia.scbe.hackathon.bestdayever.placesapi.PlacesAPIService;
+import com.nokia.scbe.bestdayever.calendar.*;
 
 public class Engine {
 	private static final int NUM_EXTRA_PLACES_PER_CATEGORY = 20;
@@ -17,7 +22,10 @@ public class Engine {
 	
 
     //Sample call e.optimize(42.3821,-71.0244,55.0, "rain", ENERGY_MED);
-	public List<PlaceResultItem> optimize(double lat, double longitude, double temp, String forecast, String energyLevel)
+	public MyBestDay createMyBestDay(String googleId, Date start, Date end, String timezone, 
+			double lat, double longitude, 
+			double temp, String forecast, 
+			String energyLevel)
 	{		
 		//1. Get Places Nearby
               
@@ -42,7 +50,14 @@ public class Engine {
  
         
     //2. Get Calendar free time (free time chunks)
-   		
+   			FreeBusyTimesRetriever f = new FreeBusyTimesRetriever();
+   			List<TimeSlot> freeTimeSlots = new ArrayList<TimeSlot>();
+   			try {
+   				freeTimeSlots = f.getFreeTimes(googleId, start, end, timezone);
+			} catch (IOException e) {
+				System.err.println(e);
+				e.printStackTrace();
+			}
    	//3. Get weather  (min temp, rain)
         filteredList = weightResultsForWeather(temp, forecast, filteredList);
         
@@ -54,9 +69,32 @@ public class Engine {
         //END FOR
         //
         
-        return filteredList;
+        MyBestDay retVal = createMyBestDay(freeTimeSlots,filteredList);
+        return retVal;
 	}
 	
+	private MyBestDay createMyBestDay(List<TimeSlot> freeTimeSlots, List<PlaceResultItem> filteredList) {
+
+		MyBestDay d = new MyBestDay();
+		int i=0;
+		List<Entry> entryList = new ArrayList<Entry>();
+		for(TimeSlot slot : freeTimeSlots)
+		{
+			PlaceResultItem suggestion = filteredList.get(i);
+			i++;
+			
+			Entry e = new Entry();
+			e.setPlaceName(suggestion.getTitle());
+			e.setPlaceUrl(suggestion.getHref());
+			e.setStart(slot.getStart());
+			e.setEnd(slot.getEnd());
+			entryList.add(e);
+		}
+		d.setEntries(entryList);
+		
+		return d;
+	}
+
 	private List<PlaceResultItem> weightResultsForWeather(double temp, String forecast,
 			List<PlaceResultItem> filteredList) {
 		//@TODO: Implement this 
