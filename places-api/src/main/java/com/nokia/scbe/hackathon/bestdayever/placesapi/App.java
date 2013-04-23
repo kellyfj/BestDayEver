@@ -22,7 +22,7 @@ public class App
         ClientFactory clientFactory = (ClientFactory) context.getBean("clientFactory");
         PlacesAPIClient client = clientFactory.createPlacesAPIClient();
         
-        PlacesAPIService service = new PlacesAPIService(client);
+        PlacesAPIService service = null; // new PlacesAPIService(client);
         List<PlaceResultItem> list = service.getPlacesNearHere(42.3821,-71.0244, 100, null);
         
         System.out.println("Got "+list.size()+" results back");

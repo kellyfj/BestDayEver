@@ -64,7 +64,7 @@ public class ClientFactoryBean implements ClientFactory{
         this.placesAPIUri = placesAPIUri;
     }
 
-
+    
     public void setPbapiHttpClient(final HttpClient httpClient) {
         HttpParams params = httpClient.getParams();
         //if there is proxy then set it.
