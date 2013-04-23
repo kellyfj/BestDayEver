@@ -80,8 +80,8 @@ public class BestDayEverController {
 		
 		MyBestDay bestDay = new MyBestDay();
 		long now = System.currentTimeMillis();
-		Entry entry1 = new Entry(new Date(now), new Date(now+30000), "Roller Kingdom", "www.rollerkingdom.com");
-		Entry entry2 = new Entry(new Date(now+80000), new Date(now+100000), "Skyzone", "www.skyzone.com");
+		Entry entry1 = new Entry(new Date(now), new Date(now+30000), "MIT Museum", "http://here.com/usa/cambridge/museum/mit-museum--840drt2y-c7f79109b0b442e5a44b4da02f7ba65f");
+		Entry entry2 = new Entry(new Date(now+80000), new Date(now+100000), "Fenway Park", "http://here.com/usa/boston/sights-museums/fenway-park--840drt2z-e53893c944a44501861ed6a8acd64e46");
 		List<Entry> entries = new ArrayList<Entry>();
 		entries.add(entry1);
 		entries.add(entry2);
