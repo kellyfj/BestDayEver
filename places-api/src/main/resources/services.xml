@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+ 	<bean id="clientFactory" class="com.nokia.scbe.hackathon.bestdayever.placesapi.ClientFactoryBean">
+ 		 <property name="pbapiUri" value="http://places.nlp.nokia.com/"/>
+ 		 <property name="proxyHost" value="nycolo-webproxy01.americas.nokia.com" />
+		 <property name="proxyPort" value="8080"/>
+		 <property name="pbapiHttpClient" ref="pbapiHttpClient"/>
+	</bean>
+
+  <bean id="pbapiHttpClient" class="com.nokia.gate5.places.lib.common.httpclient.HttpClient4FactoryBean">
+         <property name="connectionsPerRoute" value="2" />
+         <property name="totalConnections" value="20" />
+         <property name="connectionManagerTimeout" value="3000" />
+         <property name="socketTimeout" value="5000" />
+         <property name="socketConnectionTimeout" value="2000" />
+         <property name="idleConnectionMonitorEnabled" value="true" />
+         <property name="handleRedirects" value="false" />
+   </bean>
+	 
+</beans>
