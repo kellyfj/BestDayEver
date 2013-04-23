@@ -13,6 +13,19 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>Nexus Releases Repository</name>
+            <url>http://54.235.156.193:9090/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Nexus Snapshots Repository</name>
+            <url>http://54.235.156.193:9090/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -25,6 +38,7 @@
     <modules>
         <module>places-api</module>
         <module>calendar-api</module>
+        <!-- <module>weather-api</module> -->
         <module>bestdayever-app</module>
   </modules>
 </project>
