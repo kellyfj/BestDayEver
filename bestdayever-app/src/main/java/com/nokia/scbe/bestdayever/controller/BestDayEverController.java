@@ -26,7 +26,7 @@ public class BestDayEverController {
 	@RequestMapping("/mybestday")
 	public @ResponseBody MyBestDay getMyBestDay(@RequestParam(value = "latlong1", required = true) String latlong,
 			@RequestParam(value="interval", required=true) String interval, @RequestParam(value="effort", required=true) String effort,
-			@RequestParam(value="googleId", required=true) String googleId, @RequestParam(value="noaId", required=true) String noaId,
+			@RequestParam(value="googleId", required=false) String googleId, @RequestParam(value="noaId", required=false) String noaId,
 			@RequestParam(value="cost", required=true) String cost) {
 		
 		//parse to get lat long
@@ -53,6 +53,11 @@ public class BestDayEverController {
 		} catch (ParseException e) {
 			 start = new Date();
 			 end = getEnd(start);
+		}
+		
+		//if there is no googleId provided use the default
+		if (googleId == null) {
+			googleId = "bestdayever.hackethon@gmail.com";
 		}
 		
 		
